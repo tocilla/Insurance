@@ -27,10 +27,9 @@ matrix:
 
       #command to run the test suite
       script:
-        - python manage.py test
-        # - coverage run --source='.' manage.py test
-        # - coverage report --fail-under 100
-        pycodestyle **/*.py
+        - coverage run ./manage.py test
+        - coverage report --fail-under 100
+        - pycodestyle **/*.py
 
       before_deploy:
         - bash scripts/create_config_profile.sh

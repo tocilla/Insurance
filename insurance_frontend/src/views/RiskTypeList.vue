@@ -31,30 +31,6 @@
 	</b-container>
 </template>
 <script>
-	// import api from '@/api'
-	// export default{
-	//     name:'RiskTypeList',
-	//     data (){
-	//         return{
-	//             title:'Risk Types',
-	//             loading: false,
-	//             risk_types: {},
-	//             model: {}
-	//         }
-	//     },
-	//     async created () {
-	//         this.refreshRiskTypes()
-	//     },
-	//     methods: {
-	//         async refreshRiskTypes () {
-	//             this.loading = true
-	//             this.risk_types = await api.getRiskTypes()
-	//             this.loading = false
-	//         }
-	//     }
-	// }
-
-
 	import { mapState, mapActions } from 'vuex'
 	export default {
 		name: "RiskTypeList",

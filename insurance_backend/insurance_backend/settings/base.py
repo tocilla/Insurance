@@ -56,13 +56,13 @@ REST_FRAMEWORK = {
 
 }
 
-SWAGGER_SETTINGS = {
-    'SECURITY_DEFINITIONS': {
-        'basic': {
-            'type': 'basic'
-        }
-    },
-}
+# SWAGGER_SETTINGS = {
+#     'SECURITY_DEFINITIONS': {
+#         'basic': {
+#             'type': 'basic'
+#         }
+#     },
+# }
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',

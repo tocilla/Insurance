@@ -62,6 +62,8 @@ matrix:
       deploy:
         # deploy to the production
         provider: s3
+        access_key_id: $aws_access_key_id
+        secret_access_key: $aws_secret_access_key
         bucket: "insurance-frontend-tocilla.s3-website-us-east-1.amazonaws.com"
         skip_cleanup: true
         local_dir: build

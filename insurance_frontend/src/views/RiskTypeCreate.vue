@@ -129,7 +129,6 @@
 					description: this.description,
 					risk_fields: this.fields
 				};
-				console.log(risk_type);
 				await this.$store.dispatch('risk_types/createRiskType',risk_type);
 				if(!this.errors)
 					this.$router.push("/risk_types");

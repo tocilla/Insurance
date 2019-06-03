@@ -21,7 +21,7 @@ exclude_lines =
  
 omit =
     manage.py
-	wsgi.py
+	insurance_backend/wsgi.py
     insurance_backend/settings/init.py
 
 show_missing = True

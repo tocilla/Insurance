@@ -15,3 +15,21 @@ class RiskType(models.Model):
 
     def __str__(self):
         return 'Risk Type: %s' % (self.name)
+
+class RiskField(models.Model):
+    TYPES = (
+        ('text', 'Text'),
+        ('number', 'Number'),
+        ('decimal', 'Decimal'),
+        ('boolean', 'Boolean'),
+        ('option', 'Option'),
+        ('date', 'Date'),
+    )
+    risk_type = models.ForeignKey(
+        RiskType, related_name='risk_fields', on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    type = models.CharField(max_length=20, choices=TYPES)
+    required = models.BooleanField(default=True)
+
+    def __str__(self):
+        return 'Risk Field: %s, Risk Type: %s' % (self.name, self.risk_type)

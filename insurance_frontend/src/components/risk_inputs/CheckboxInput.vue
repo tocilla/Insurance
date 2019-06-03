@@ -1,6 +1,6 @@
 <template>
 	<b-form-group :for="field.name" label-cols="2">
-		<b-form-checkbox :id="field.name" v-model="input.value">{{field.name}}</b-form-checkbox>
+		<b-form-checkbox :id="field.name" v-model="input.value" :true-value="'true'" :false-value="'false'">{{field.name}}</b-form-checkbox>
 	</b-form-group>
 </template>
 

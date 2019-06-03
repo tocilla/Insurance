@@ -48,7 +48,7 @@ matrix:
 
       #install dependencies
       install:
-        - cd ../insurance_frontend
+        - cd insurance_frontend
         - npm install
 
       #change base url to production

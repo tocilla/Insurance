@@ -35,10 +35,22 @@ class RiskTypeSerializer(serializers.ModelSerializer):
         """
         risk_fields_data = validated_data.pop('risk_fields')
 
+        if len(risk_fields_data) < 1:
+            error = {'risk_fields':['risk_fields should contain at least one risk_field']}
+            raise serializers.ValidationError(error)
+
         risk_type = RiskType.objects.create(**validated_data)
         for risk_field_data in risk_fields_data:
             field_options_data = risk_field_data.pop('field_options')
             risk_field = risk_type.risk_fields.create(**risk_field_data)
+
+            if len(field_options_data) < 2 and risk_field_data['type'] is 'option':
+                error = {'field_options':['for option type it required to give at least two field_option']}
+                raise serializers.ValidationError(error)
+
+            if len(field_options_data)>0 and risk_field_data['type'] is not 'option':
+                error = {'field_options':['for ' + risk_field_data['type'] + ' type field can\'t have field options']}
+                raise serializers.ValidationError(error)
 
             for field_option_data in field_options_data:
                 if risk_field_data['type'] is 'option':

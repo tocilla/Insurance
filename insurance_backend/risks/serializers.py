@@ -26,6 +26,7 @@ class RiskSerializer(serializers.ModelSerializer):
         filter_backends = (filters.OrderingFilter,)
         ordering_fields = ('name','risk_type','created_at')
 
+    @transaction.atomic
     def create(self, validated_data):
         """
         Create and return a new `Risk` instance, given the validated data.
@@ -35,6 +36,9 @@ class RiskSerializer(serializers.ModelSerializer):
 
         for risk_input_data in risk_inputs_data:
             risk_field = risk_input_data["risk_field"] #RiskField.objects.get(pk=risk_input_data["risk_field_id"])
+            if risk_field.required is True and not risk_input_data["value"]:
+                error = {'risk_inputs':['Empty value is not allowed on required inputs']}
+                raise serializers.ValidationError(error)
 
             risk.risk_inputs.create(**risk_input_data)
         return risk

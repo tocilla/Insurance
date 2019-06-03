@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'risk_types.apps.RiskTypesConfig',
     'risks.apps.RisksConfig',
     'corsheaders',
+    # 'django_s3_storage',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
@@ -132,4 +133,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+
+# S3_BUCKET = "zappa-twlavjr8y"
+
+# STATICFILES_STORAGE = "django_s3_storage.storage.StaticS3Storage"
+
+# AWS_S3_BUCKET_NAME_STATIC = S3_BUCKET
+
+# STATIC_URL = "https://%s.s3.amazonaws.com/" % S3_BUCKET

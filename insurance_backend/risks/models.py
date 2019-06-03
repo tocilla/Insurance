@@ -10,7 +10,6 @@ class Risk(models.Model):
         RiskType, related_name='risks', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    
     class Meta:
         ordering = ('-created_at', )
 

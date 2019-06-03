@@ -6,12 +6,14 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 from rest_framework.authtoken.models import Token
-from .models import RiskType,RiskField
+from .models import RiskType, RiskField
+
 
 class TestRiskTypeAPIViews(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.user = User.objects.create_user('testuser', email='testuser@test.com', password='testing')
+        self.user = User.objects.create_user(
+            'testuser', email='testuser@test.com', password='testing')
         self.user.save()
         token = Token.objects.create(user=self.user)
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
@@ -100,7 +102,7 @@ class TestRiskTypeAPIViews(TestCase):
                 }
             ]
         }
-        RiskType.objects.create(name=risk_type["name"],description=risk_type["description"])
+        RiskType.objects.create(name=risk_type["name"], description=risk_type["description"])
         url = reverse('risk_types:risk_type-list')
         response = self.client.post(url, risk_type)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -152,7 +154,6 @@ class TestRiskTypeAPIViews(TestCase):
         url = reverse('risk_types:risk_type-list')
         response = self.client.post(url, risk_type)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
 
     def test_create_risk_type_with_non_option_field_with_options(self):
         risk_type = {

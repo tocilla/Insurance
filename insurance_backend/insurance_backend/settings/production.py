@@ -1,12 +1,14 @@
 import os
 from django.core.exceptions import ImproperlyConfigured
 
+
 def get_env_var(var_name):
     try:
         return os.environ[var_name]
     except KeyError:
         error_msg = f"Set the {var_name} environment variable"
         raise ImproperlyConfigured(error_msg)
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env_var("SECRET_KEY")

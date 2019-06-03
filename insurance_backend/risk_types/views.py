@@ -4,6 +4,7 @@ from rest_framework.viewsets import GenericViewSet
 from .models import RiskType
 from .serializers import RiskTypeSerializer
 
+
 class RiskTypeViewSet(mixins.ListModelMixin,
                       mixins.CreateModelMixin,
                       mixins.RetrieveModelMixin,

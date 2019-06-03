@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-       'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -75,7 +75,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True   
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'insurance_backend.urls'
 
@@ -142,7 +142,7 @@ MY_S3_BUCKET = "insurance-frontend-tocilla"
 STATICFILES_STORAGE = "django_s3_storage.storage.StaticS3Storage"
 AWS_S3_BUCKET_NAME_STATIC = MY_S3_BUCKET
 
-# These next two lines will serve the static files directly 
+# These next two lines will serve the static files directly
 # from the s3 bucket
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % MY_S3_BUCKET
 STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN

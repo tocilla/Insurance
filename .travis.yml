@@ -1,0 +1,69 @@
+matrix:
+  include:
+
+    - language: python
+
+      python:
+        - "3.6"
+
+      services: mysql
+
+      env:
+        global:
+          - DJANGO_SETTINGS_MODULE="insurance_backend.settings.init"
+          - PYTHONPATH="/home/travis/build/tocilla/Insurance/insurance_backend"
+          - PIP_USE_MIRRORS=true
+          - ENVIROMENT=travis
+        matrix:
+          - DB=mysql
+
+      #commands to install dependencies
+      install:
+        - cd insurance_backend
+        - pip install -q -r requirements.txt
+
+      before_script:
+        - mysql -e 'create database travis_ci_db;'
+
+      #command to run the test suite
+      script:
+        # - python manage.py test
+        - coverage run --source='.' manage.py test
+        - coverage report --fail-under 100
+
+      before_deploy:
+        - bash scripts/create_config_profile.sh
+
+      deploy:
+        # deploy to the production
+        - provider: script
+          script: bash scripts/deploy.sh
+          on:
+            branch: master
+
+
+    - language: node_js
+
+      node_js: 'stable'
+
+      #install dependencies
+      install:
+        - cd ../insurance_frontend
+        - npm install
+
+      #change base url to production
+      before_script:
+        - sed -i "s~http://localhost:8000~$backend_url~" src/services/api.js
+
+      #build the application
+      script:
+        - npm run build
+
+      deploy:
+        # deploy to the production
+        provider: s3
+        bucket: "insurance-frontend-tocilla.s3-website-us-east-1.amazonaws.com"
+        skip_cleanup: true
+        local_dir: build
+        on:
+            branch: master

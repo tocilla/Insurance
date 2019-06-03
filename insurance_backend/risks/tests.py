@@ -141,3 +141,18 @@ class TestRiskTypeAPIViews(TestCase):
         url = reverse('risks:risk-list')
         response = self.client.post(url, risk)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_list_risk(self):
+        Risk.objects.create(name="Name 1",risk_type_id=self.risk_type.pk)
+        Risk.objects.create(name="Name 2",risk_type_id=self.risk_type.pk)
+        url = reverse('risks:risk-list')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data.get('count'), 2)
+
+    def test_retrieve_risk(self):
+        risk = Risk.objects.create(name="Name",risk_type_id=self.risk_type.pk)
+        url = reverse('risks:risk-detail', kwargs={'pk': risk.pk})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data.get('id'), risk.pk)

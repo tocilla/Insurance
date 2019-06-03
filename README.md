@@ -9,6 +9,8 @@ This project is created using [Django](https://www.djangoproject.com/) and [Djan
 
 ## My Approach
 
+### Backend
+
 The backend project contains two applications described as below:
 
 __risk_types__ - This application contains the business logic related to creating dynamic models and it has 3 database models: Risk Type, RiskField and FieldOption
@@ -23,6 +25,7 @@ Below you can find Entity relationship diagram
     <img src="insurance_backend/Docs/ER_Diagram.png" alt="ER Diagram">
 </p>
 
+### Frontend
 The frontend is implemented as SPA with VueJS.
 Frontend boilerplate is a modification of standard Vue boilerplate (the one that can be generated using Vue CLI), it has services folder which is used for API calls, separated Vuex stores for each module and filters. 
 
@@ -121,19 +124,19 @@ Test cases are developed using Django native test client and are intended to pro
 For running coverage:
 
 ```
-docker-compose exec backend bash -c python coverage run ./manage.py test
+docker-compose exec backend bash -c coverage run ./manage.py test
 ```
 
 If you want to see the results of coverage:
 
 ```
-docker-compose exec backend bash -c python coverage report
+docker-compose exec backend bash -c coverage report
 ```
 
 For more readable reports:
 
 ```
-docker-compose exec backend bash -c python coverage html
+docker-compose exec backend bash -c coverage html
 ```
 
 ### And coding style tests
@@ -265,5 +268,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Add edit and delete functionality for risk_types and risks on both frontend and backend
 * Add error section for each field and display field validations errors based on fields.
 * Make relation from User model to Risk and RiskType models
-* Add pagination,filters and search on frontend for both Risk and RiskType tables
+* Add pagination, filters and search functionality on the frontend for both Risk and RiskType tables
 * Add tests for frontend

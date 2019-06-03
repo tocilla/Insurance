@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    environment:
+       MYSQL_DATABASE: 'insurance'
+       MYSQL_USER: 'root'
+       MYSQL_PASSWORD: 'secret'
+       MYSQL_ROOT_PASSWORD: 'secret'
+    volumes:
+      - myvolume:/var/lib/mysql
+  backend:
+    build: .
+    command: run.sh #python manage.py runserver 0.0.0.0:8000
+    entrypoint: entrypoint.sh
+    volumes:
+      - .:/Insurance/insurance_backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

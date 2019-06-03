@@ -1,0 +1,40 @@
+language: python
+
+python:
+  - "3.6"
+
+services: mysql
+
+env:
+  global:
+    - DJANGO_SETTINGS_MODULE="insurance_backend.settings.init"
+    - PYTHONPATH="/home/travis/build/tocilla/Insurance/insurance_backend"
+    - PIP_USE_MIRRORS=true
+    - ENVIROMENT=travis
+  matrix:
+    - DB=mysql
+
+#commands to install dependencies
+install:
+  - cd insurance_backend
+  # - pip install PyMySQL
+  - sudo pip install pip --upgrade
+  - sudo pip install MySQL-python
+  - pip install -q -r requirements.txt
+
+before_script:
+  - mysql -e 'create database travis_ci_db;'
+
+#command to run the test suite
+script:
+  - python manage.py test
+
+before_deploy:
+  - bash scripts/create_config_profile.sh
+
+deploy:
+  # deploy to the production
+  - provider: script
+    script: bash scripts/deploy.sh
+    on:
+      branch: master

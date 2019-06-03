@@ -22,3 +22,14 @@ services:
       - "8000:8000"
     depends_on:
       - db
+  frontend:
+    build: .
+    ports:
+      - 8080:8080
+    command: sh -c "npm install && npm run serve"
+    volumes:
+      - ".:/Insurance/insurance_frontend"
+    environment:
+      HOST: 0.0.0.0
+    depends_on:
+      - db

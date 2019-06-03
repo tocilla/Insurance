@@ -6,10 +6,6 @@ from . import views
 
 app_name = 'risks'
 
-schema_view = get_swagger_view(title='Pastebin API')
-urlpatterns = [
-    url(r'^$', schema_view)
-]
 router = DefaultRouter()
 router.register('', views.RiskViewSet, base_name='risk')
 urlpatterns = router.urls

@@ -25,11 +25,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'rest_framework_swagger',
+    # 'rest_framework_swagger',
     'risk_types.apps.RiskTypesConfig',
     'risks.apps.RisksConfig',
     'corsheaders',
-    # 'django_s3_storage',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
@@ -39,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_s3_storage',
+
 ]
 
 REST_FRAMEWORK = {
@@ -133,13 +134,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+STATIC_URL = '/static/'
 
-# S3_BUCKET = "zappa-twlavjr8y"
 
-# STATICFILES_STORAGE = "django_s3_storage.storage.StaticS3Storage"
+MY_S3_BUCKET = "insurance-frontend-tocilla"
 
-# AWS_S3_BUCKET_NAME_STATIC = S3_BUCKET
+STATICFILES_STORAGE = "django_s3_storage.storage.StaticS3Storage"
+AWS_S3_BUCKET_NAME_STATIC = MY_S3_BUCKET
 
-# STATIC_URL = "https://%s.s3.amazonaws.com/" % S3_BUCKET
+# These next two lines will serve the static files directly 
+# from the s3 bucket
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % MY_S3_BUCKET
+STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+
+# OR...if you create a fancy custom domain for your static files use:
+#AWS_S3_PUBLIC_URL_STATIC = "https://static.zappaguide.com/"

@@ -1,3 +1,3 @@
-#!/bin/bash$E
+#!/bin/bash
 zappa update production
-#zappa manage production migrate
+zappa manage production migrate

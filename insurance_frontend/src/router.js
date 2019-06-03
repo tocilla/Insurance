@@ -7,8 +7,6 @@ const About = () => import ('@/views/About.vue');
 
 const Login = () => import ('@/views/Login');
 const Lost = () => import ('@/views/Lost');
-const PasswordReset = () => import ('@/views/PasswordReset');
-const PasswordResetConfirm = () => import ('@/views/PasswordResetConfirm');
 
 const RiskTypeList = () => import ('@/views/RiskTypeList.vue');
 const RiskTypeCreate = () => import ('@/views/RiskTypeCreate.vue');

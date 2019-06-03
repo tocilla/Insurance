@@ -41,7 +41,7 @@ export default {
 					//throw error.response.data;
 					throw errors;
 				} else if (error.response.status == "401") {
-					console.log('unauthorized, logging out ...');
+					// console.log('unauthorized, logging out ...');
 					router.replace('/logout');
 				} else if (error.response.status == 403) {
 					throw ['Forbidden resource can\'t be accessed.'];

@@ -10,3 +10,11 @@ class RiskFieldOptionSerializer(serializers.ModelSerializer):
         fields = ('content',)
 
 
+class RiskFieldSerializer(serializers.ModelSerializer):
+    field_options = RiskFieldOptionSerializer(many=True, required=False)
+
+    class Meta:
+        model = RiskField
+        fields = ('id', 'name', 'type', 'field_options', 'required',)
+
+

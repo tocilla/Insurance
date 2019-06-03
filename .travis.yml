@@ -31,6 +31,10 @@ matrix:
         - coverage report --fail-under 100
         - pycodestyle **/*.py
 
+      # push the results back to codecov
+      after_success:
+        - codecov
+
       before_deploy:
         - bash scripts/create_config_profile.sh
 

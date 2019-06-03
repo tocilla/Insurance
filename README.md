@@ -41,6 +41,7 @@ I also created a [Docker Compose](https://docs.docker.com/compose/) file to make
 Build status of continuous integration
 
 [![Build Status](https://travis-ci.org/tocilla/Insurance.svg?branch=master)](https://travis-ci.org/tocilla/Insurance)
+[![codecov](https://codecov.io/gh/tocilla/Insurance/branch/master/graph/badge.svg)](https://codecov.io/gh/tocilla/Insurance)
 
 ## Getting Started
 

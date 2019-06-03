@@ -25,8 +25,7 @@
 </template>
 <script>
     import {
-        mapState,
-        mapActions
+        mapState
     } from 'vuex'
     export default {
         data() {

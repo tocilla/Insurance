@@ -16,6 +16,7 @@ class RiskType(models.Model):
     def __str__(self):
         return 'Risk Type: %s' % (self.name)
 
+
 class RiskField(models.Model):
     TYPES = (
         ('text', 'Text'),
@@ -33,7 +34,7 @@ class RiskField(models.Model):
 
     def __str__(self):
         return 'Risk Field: %s, Risk Type: %s' % (self.name, self.risk_type)
-		
+
 
 class FieldOption(models.Model):
     risk_field = models.ForeignKey(

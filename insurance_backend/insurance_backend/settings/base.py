@@ -25,7 +25,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'rest_framework_swagger',
+    'drf_yasg',
     'risk_types.apps.RiskTypesConfig',
     'risks.apps.RisksConfig',
     'corsheaders',

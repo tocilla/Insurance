@@ -109,7 +109,9 @@ You can now access to the project from [https://localhost:8080](https://localhos
 
 ## API Reference
 
-See the [API.md](insurance_backend/Docs/API.md) file for full api specification.
+See the [API.md](insurance_backend/Docs/API.md) file for full API specification.
+
+Click [here](https://ysvq9gnnj4.execute-api.us-east-1.amazonaws.com/production/swagger) for Live API Endpoints
 
 ## Tests
 
@@ -176,6 +178,8 @@ docker-compose exec backend bash -c zappa deploy production
 ```
 
 Create RDS Instance on AWS RDS and use the credentials to set the DB related environment variables on your lambda management console (for more see `settings/production.py`)
+
+***Important Note***: Run your Lambda function and RDS instance inside a VPC in the same region
 
 Migrate database structure:
 

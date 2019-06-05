@@ -25,7 +25,7 @@
 				<tr v-for="risk in risks" :key="risk.id">
 					<td>{{risk.id}}</td>
 					<td>{{risk.name}}</td>
-					<td>{{risk.risk_type.name}}</td>
+					<td>{{risk.risk_type_name}}</td>
 					<td>{{risk.created_at | formatDate}}</td>
 				</tr>
 			</tbody>

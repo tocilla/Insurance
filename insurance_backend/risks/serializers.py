@@ -6,8 +6,6 @@ from risk_types.serializers import RiskTypeSerializer, RiskFieldSerializer
 
 
 class RiskInputSerializer(serializers.ModelSerializer):
-    # risk_field = RiskFieldSerializer(many=False, read_only=True)
-    # risk_field_id = serializers.IntegerField(write_only=True,required=True)
 
     class Meta:
         model = RiskInput
@@ -15,16 +13,16 @@ class RiskInputSerializer(serializers.ModelSerializer):
 
 
 class RiskSerializer(serializers.ModelSerializer):
-    # risk_type = RiskTypeSerializer(many=False, read_only=True)
-    # risk_type_id = serializers.IntegerField(write_only=True)
     risk_inputs = RiskInputSerializer(many=True, required=True)
+    risk_type_name = serializers.ReadOnlyField(source='risk_type.name')
 
     class Meta:
         model = Risk
         fields = ('id', 'name', 'risk_type',
-                  'risk_inputs', 'created_at',)
+                  'risk_type_name', 'risk_inputs', 'created_at',)
+        # depth = 1
         filter_backends = (filters.OrderingFilter,)
-        ordering_fields = ('name', 'risk_type', 'created_at')
+        ordering_fields = ('name', 'risk_type', 'created_at',)
 
     @transaction.atomic
     def create(self, validated_data):

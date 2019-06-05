@@ -1,2 +1,2 @@
 #!/bin/bash
-python app.py migrate
+python manage.py migrate

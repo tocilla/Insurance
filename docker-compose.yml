@@ -11,11 +11,11 @@ services:
        MYSQL_PASSWORD: 'secret'
        MYSQL_ROOT_PASSWORD: 'secret'
     volumes:
-      - myvolume:/var/lib/mysql
+      - my-db:/var/lib/mysql
   backend:
-    build: .
+    build: ./insurance_backend
     command: run.sh #python manage.py runserver 0.0.0.0:8000
-    entrypoint: entrypoint.sh
+    entrypoint: /insurance_backend/entrypoint.sh
     volumes:
       - .:/Insurance/insurance_backend
     ports:
@@ -23,7 +23,7 @@ services:
     depends_on:
       - db
   frontend:
-    build: .
+    build: ./insurance_frontend
     ports:
       - 8080:8080
     command: sh -c "npm install && npm run serve"
@@ -33,3 +33,5 @@ services:
       HOST: 0.0.0.0
     depends_on:
       - db
+volumes:
+  my-db:

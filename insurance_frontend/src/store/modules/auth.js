@@ -17,7 +17,6 @@ const actions = {
 		try
 		{
 			var result = await authService.login(username, password);
-			console.log("aaa", result);
 			commit("SET_TOKEN", result.key);
 			commit("LOGIN_SUCCESS");
 		}

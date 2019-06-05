@@ -33,7 +33,7 @@ Frontend boilerplate is a modification of standard Vue boilerplate (the one that
 I used Zappa to deploy the backend application to [AWS Lambda](https://aws.amazon.com/lambda/), [Aurora Serverless](https://aws.amazon.com/rds/aurora/serverless/) to host the DB and [Amazon S3](https://aws.amazon.com/s3/) for the frontend application.
 
 Deployment is fully scripted using [Travis CI](https://travis-ci.org/) as a hosted CI and CD service.
-I used Travis CI to run a pipeline that runs test cases, coverage check, coding style tests for [PEP 8](https://www.python.org/dev/peps/pep-0008) compliance for each git push and deploys automatically to production if the branch is master.
+I used Travis CI to run a pipeline that runs test cases, coverage check, coding style tests for [PEP 8](https://www.python.org/dev/peps/pep-0008) compliance for each git push and deploys automatically on success to production if the branch is master.
 
 ***Note***: 
 In order to have the build successfully test coverage condition is specified on [travis.yml](travis.yml) as 100% 
